@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react'
 
 import { Box, Text, UnorderedList, ListItem, Button } from "@chakra-ui/react"
+import { Route } from 'react-router'
+import { useContext } from "react"
+import { UserContext } from "../contexts/IsLogged"
 
 const Home = () => {
+  const {isLogged} = useContext(UserContext)
   const [pokemon, setPokemon] = useState(null)
 
   useEffect(() => { // => componentDidMount
@@ -32,10 +36,11 @@ const Home = () => {
     return <p>Pas de pokemon</p>
   }
 
-  console.log(pokemon)
 
   return (
-    <Box>
+  <>
+  {isLogged ? 
+  <Box>
        <Box border="1px" borderColor="teal" borderRadius={5} p={5}>
         <Box mb={5}>
           <img src={pokemon.sprites.other["official-artwork"].front_default} alt={pokemon.name} />
@@ -54,8 +59,11 @@ const Home = () => {
       <Button colorScheme="teal" variant="solid" w="100%" mt={5} onClick={handleButtonClick}>
         Get random pokemon
       </Button>
-    </Box>
-
+    </Box> 
+  : <p>retour home</p>
+  }
+    
+  </>
   )
 }
 
