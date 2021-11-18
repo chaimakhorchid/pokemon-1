@@ -4,11 +4,13 @@ import { Input, Button } from "@chakra-ui/react"
 import { FormControl, FormLabel, FormErrorMessage } from "@chakra-ui/form-control"
 import { useContext } from "react"
 import { UserContext } from "../contexts/IsLogged"
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
 
   const {setIsLogged, isLogged} = useContext(UserContext)
+  let navigate = useNavigate(); 
 
   const formik = useFormik({
     initialValues: {
@@ -30,12 +32,14 @@ const Login = () => {
     }),
     validateOnChange: false
   })
-  
+
  const logout = () => {
    setIsLogged(false)
    console.log(isLogged);
 
  }
+
+
 
   return (
     <>
@@ -68,7 +72,9 @@ const Login = () => {
       <Button type="submit" colorScheme="teal" variant="solid" w="100%" mt={5} >
         Submit
       </Button>
+      {navigate("/")}
     </form>
+    
     }
     
     </>

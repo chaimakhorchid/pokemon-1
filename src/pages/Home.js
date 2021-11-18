@@ -4,6 +4,7 @@ import { Box, Text, UnorderedList, ListItem, Button } from "@chakra-ui/react"
 import { Route } from 'react-router'
 import { useContext } from "react"
 import { UserContext } from "../contexts/IsLogged"
+import { Link } from 'react-router-dom'
 
 const Home = () => {
   const {isLogged} = useContext(UserContext)
@@ -60,7 +61,7 @@ const Home = () => {
         Get random pokemon
       </Button>
     </Box> 
-  : <p>retour home</p>
+  : <Link to="/login">login</Link>
   }
     
   </>
